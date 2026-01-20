@@ -12,8 +12,8 @@ export default function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: "manager@company.com",
-        password: "manager123",
-      }),
+        password: "manager123"
+      })
     });
 
     const data = await res.json();
@@ -24,8 +24,8 @@ export default function App() {
     if (!user) return;
 
     fetch(`${API_URL}/tasks?userId=${user.id}&role=${user.role}`)
-      .then((res) => res.json())
-      .then((data) => setTasks(data));
+      .then(res => res.json())
+      .then(setTasks);
   }, [user]);
 
   if (!user) {
@@ -39,10 +39,9 @@ export default function App() {
 
   return (
     <div style={{ padding: 40 }}>
-      <h2>Welcome, {user.name}</h2>
-      <h3>Your Tasks</h3>
+      <h2>Welcome {user.name}</h2>
       <ul>
-        {tasks.map((task) => (
+        {tasks.map(task => (
           <li key={task.id}>
             {task.title} — <b>{task.status}</b>
           </li>
@@ -51,4 +50,3 @@ export default function App() {
     </div>
   );
 }
-
